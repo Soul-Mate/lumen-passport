@@ -10,31 +10,28 @@ Making Laravel Passport work with Lumen
 
 A simple service provider that makes Laravel Passport work with Lumen
 
-## Dependencies
+## Feature
+* support passport
+* support mobile grant
+
+## Dep
 
 * PHP >= 5.6.3
 * Lumen >= 5.3
 
-## Installation via Composer
 
-First install Lumen if you don't have it yet:
-```bash
-$ composer create-project --prefer-dist laravel/lumen lumen-app
-```
-
-Then install Lumen Passport (it will fetch Laravel Passport along):
 
 ```bash
-$ cd lumen-app
-$ composer require dusterio/lumen-passport
+$ cd you-app
+$ composer require yuanchanglumen-passport
 ```
 
-Or if you prefer, edit `composer.json` manually:
+Or edit `composer.json` manually:
 
 ```json
 {
     "require": {
-        "dusterio/lumen-passport": "^0.2.0"
+        "yuanchang/lumen-passport": "^1.0"
     }
 }
 ```
@@ -57,8 +54,20 @@ $app->routeMiddleware([
 
 // Finally register two service providers - original one and Lumen adapter
 $app->register(Laravel\Passport\PassportServiceProvider::class);
-$app->register(Dusterio\LumenPassport\PassportServiceProvider::class);
+$app->register(YuanChang\LumenPassport\PassportServiceProvider::class);
 ```
+
+If you want use mobile grant type and you want custom verify mobile validate type.
+
+you need implement MobileChecker interface.
+
+if you implement MobileChecker, you need extendMobileChecker
+
+```php
+LumenPassport::extendMobileChecker(MobileChecker::class);
+```
+
+
 
 ### Migrate and install Laravel Passport
 
